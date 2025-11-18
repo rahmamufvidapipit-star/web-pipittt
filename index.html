@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pipit Rahma Mufvida — Portfolio</title>
+  <meta name="description" content="Formal, aesthetic, and complete portfolio — Pipit Rahma Mufvida" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-dark:#0b0710;
+      --panel:#0f0a14;
+      --muted:#b9a9b5;
+      --text:#fff9fb;
+      --accent:#f2b9d6; /* pastel pink */
+      --accent-2:#c77aa6;
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      --max-width:1100px;
+      --transition: 300ms cubic-bezier(.2,.9,.2,1);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial;
+      background:linear-gradient(180deg,#07050a 0%, #0b0710 100%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:28px 18px;
+      display:flex;
+      justify-content:center;
+    }
+    .wrap{width:100%;max-width:var(--max-width)}
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:60px;height:60px;border-radius:12px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:grid;place-items:center;font-weight:800;color:#2b0b12;font-size:20px;box-shadow:0 8px 30px rgba(199,122,166,0.14);
+    }
+    .brand h1{margin:0;font-size:18px}
+    .brand p{margin:0;font-size:13px;color:var(--muted)}
+    nav ul{list-style:none;padding:0;margin:0;display:flex;gap:12px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;padding:8px;border-radius:10px}
+    nav a:hover{color:var(--text);background:rgba(255,255,255,0.02)}
+    .btn{
+      padding:9px 14px;border-radius:10px;text-decoration:none;font-weight:700;border:1px solid rgba(255,255,255,0.06);
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      color:var(--text);
+    }
+    .btn-primary{
+      background:linear-gradient(180deg,var(--accent),var(--accent-2));
+      color:#2b0b12;border:none;
+      box-shadow:0 6px 22px rgba(199,122,166,0.12);
+    }
+
+    main{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
+    .panel{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);padding:22px;border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 8px 30px rgba(2,1,3,0.6);
+    }
+
+    /* Hero */
+    .hero {display:flex;flex-direction:column;gap:12px}
+    .intro h2{margin:0;font-size:22px}
+    .intro p{margin:6px 0 0 0;color:var(--muted);font-size:14px}
+    .summary{margin-top:14px;color:var(--text);line-height:1.6}
+
+    .meta{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+    .meta .pill{background:var(--glass);padding:8px 12px;border-radius:999px;font-weight:700;color:var(--muted);font-size:13px}
+
+    /* Projects grid */
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+    .project{
+      border-radius:12px;overflow:hidden;cursor:pointer;transition:all var(--transition);
+      border:1px solid rgba(255,255,255,0.03);
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+    }
+    .project:hover{transform:translateY(-6px)}
+    .project .thumb{height:160px;background:#120616;display:grid;place-items:center;color:var(--accent);font-weight:800;font-size:16px}
+    .project .meta{padding:12px}
+    .project .meta h3{margin:0;font-size:15px}
+    .project .meta p{margin:8px 0 0 0;color:var(--muted);font-size:13px}
+
+    /* Sidebar profile */
+    .profile{display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
+    .avatar{width:130px;height:130px;border-radius:16px;background:linear-gradient(135deg,#fff0f6, #ffeef6);display:grid;place-items:center;font-weight:800;color:#2b0b12;font-size:28px}
+    .contact-list{width:100%;display:flex;flex-direction:column;gap:8px;margin-top:6px}
+    .contact-list a{display:block;padding:10px;border-radius:10px;text-decoration:none;color:var(--text);background:rgba(255,255,255,0.02);font-weight:700;border:1px solid rgba(255,255,255,0.02);text-align:center}
+
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px}
+    .gallery img{width:100%;height:80px;object-fit:cover;border-radius:10px;cursor:pointer;border:2px solid rgba(255,255,255,0.03);transition:transform var(--transition)}
+    .gallery img:hover{transform:scale(1.04)}
+
+    /* CV card */
+    .cv-card{display:flex;flex-direction:column;gap:10px}
+    .cv-row{display:flex;gap:10px;align-items:center}
+    .cv-download{margin-left:auto}
+
+    /* Project detail (single-page sections) */
+    .project-detail{display:none;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));border:1px solid rgba(255,255,255,0.03)}
+    .project-detail.active{display:block}
+
+    /* Lightbox */
+    .lightbox{
+      position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,1,3,0.78);z-index:9999;padding:24px;
+    }
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:95%;max-height:85%;border-radius:10px;box-shadow:0 12px 40px rgba(0,0,0,0.6)}
+    .lightbox .caption{margin-top:12px;color:var(--muted);font-size:14px;text-align:center}
+    .lightbox .close, .lightbox .nav{
+      position:absolute;top:18px;background:rgba(255,255,255,0.04);border-radius:10px;padding:8px;cursor:pointer;color:var(--text);border:1px solid rgba(255,255,255,0.02)
+    }
+    .lightbox .close{right:18px}
+    .lightbox .nav.prev{left:18px;top:50%}
+    .lightbox .nav.next{right:18px;top:50%}
+
+    footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px;padding-bottom:20px}
+
+    @media (max-width:1100px){
+      main{grid-template-columns:1fr 320px}
+      .projects-grid{grid-template-columns:repeat(2,1fr)}
+      .gallery{grid-template-columns:repeat(4,1fr)}
+    }
+    @media (max-width:780px){
+      header{flex-direction:column;align-items:flex-start;gap:12px}
+      main{grid-template-columns:1fr}
+      .projects-grid{grid-template-columns:repeat(1,1fr)}
+      .gallery{grid-template-columns:repeat(3,1fr)}
+    }
+    @media (max-width:420px){
+      .gallery{grid-template-columns:repeat(2,1fr)}
+    }
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    a.no-style{color:inherit;text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">PR</div>
+        <div>
+          <h1>Pipit Rahma Mufvida</h1>
+          <p>Graphic Design Student at SMK Grafika Desa Putera</p>
+        </div>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a class="no-style" href="#home">Home</a></li>
+          <li><a class="no-style" href="#projects">Projects</a></li>
+          <li><a class="no-style" href="#gallery">Gallery</a></li>
+          <li><a class="no-style" href="#cv">Resume</a></li>
+          <li><a class="no-style" href="#contact">Contact</a></li>
+          <li><a class="btn btn-primary" id="themeToggle" href="#">Dark • Pink</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- LEFT: content -->
+      <div>
+        <!-- HOME / HERO -->
+        <section id="home" class="panel hero" aria-labelledby="intro-title">
+          <div class="intro">
+            <h2 id="intro-title">Hello — I'm Pipit Rahma Mufvida</h2>
+            <p class="muted">Graphic Designer & Print Production — Student at SMK Grafika Desa Putera</p>
+            <p class="summary">
+              I design for both print and digital: packaging, branding, posters, and print-ready production files.
+              My work focuses on clean layouts, practical production constraints, and high-quality printing outcomes.
+            </p>
+
+            <div class="meta">
+              <div class="pill">10 Featured Projects</div>
+              <div class="pill">PKL Intern — PT Bintang Sempurna</div>
+              <div class="pill">Typography • Prepress • QC</div>
+            </div>
+          </div>
+
+          <!-- CV quick & contacts -->
+          <aside style="margin-top:18px" class="panel profile" aria-label="profile">
+            <div class="avatar">PR</div>
+            <div style="font-weight:800">Pipit Rahma Mufvida</div>
+            <div class="muted" style="font-size:13px">Graphic Design Student</div>
+
+            <div class="contact-list" role="list">
+              <a href="mailto:emailkamu@domain.com">emailkamu@domain.com</a>
+              <a href="tel:+628123456789">+62 812-3456-789</a>
+              <a href="#" id="downloadCV" onclick="downloadCV();return false;">Download CV (PDF)</a>
+            </div>
+
+            <div style="width:100%;margin-top:8px">
+              <div style="font-weight:700;margin-bottom:6px">Skills</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+                <div class="pill" style="background:transparent;border:1px solid rgba(255,255,255,0.03)">Adobe Illustrator</div>
+                <div class="pill" style="background:transparent;border:1px solid rgba(255,255,255,0.03)">CorelDRAW</div>
+                <div class="pill" style="background:transparent;border:1px solid rgba(255,255,255,0.03)">Prepress</div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <!-- PROJECT LIST -->
+        <section id="projects" class="panel" aria-labelledby="projects-title">
+          <h2 id="projects-title">Featured Projects</h2>
+          <p class="muted" style="margin-top:6px">Click any item to view the project page. Thumbnails open the project or gallery preview.</p>
+
+          <div class="projects-grid" id="projectsGrid" aria-live="polite">
+            <!-- JS will populate 10 projects here -->
+          </div>
+        </section>
+
+        <!-- GALLERY -->
+        <section id="gallery" class="panel" aria-labelledby="gallery-title">
+          <h2 id="gallery-title">Works Gallery</h2>
+          <p class="muted" style="margin-top:6px">Click an image to enlarge (lightbox). Use arrow keys to navigate.</p>
+
+          <div class="gallery" id="galleryGrid">
+            <!-- JS populates thumbnails -->
+          </div>
+        </section>
+
+        <!-- CV full -->
+        <section id="cv" class="panel" aria-labelledby="cv-title">
+          <h2 id="cv-title">Resume</h2>
+          <div class="cv-card">
+            <div>
+              <strong id="cv-name">Pipit Rahma Mufvida</strong>
+              <div class="muted" id="cv-role">Graphic Design Student — SMK Grafika Desa Putera</div>
+            </div>
+
+            <div style="display:flex;gap:12px;align-items:center">
+              <div style="flex:1;color:var(--muted);font-size:14px">
+                <p id="cv-summary">I specialize in print and visual design with practical knowledge of prepress and QC for production.</p>
+                <ul id="cv-list" style="margin:8px 0 0 16px;color:var(--muted)">
+                  <li>Adobe Illustrator, Photoshop, CorelDRAW</li>
+                  <li>Prepress & Proofing</li>
+                  <li>Packaging & Branding</li>
+                </ul>
+              </div>
+              <div class="cv-download">
+                <a class="btn" href="#" onclick="downloadCV();return false;">Download PDF</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="panel" aria-labelledby="contact-title">
+          <h2 id="contact-title">Contact</h2>
+          <p class="muted">Use the form or email directly.</p>
+
+          <form id="contactForm" style="display:grid;gap:8px;margin-top:10px" onsubmit="handleContact(event)">
+            <input id="contactName" required placeholder="Your name" style="padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--text)">
+            <input id="contactEmail" type="email" required placeholder="Your email" style="padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--text)">
+            <textarea id="contactMessage" required placeholder="Message" style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--text);min-height:110px"></textarea>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-primary" type="submit">Send Message</button>
+              <a class="btn" href="mailto:emailkamu@domain.com">Or email directly</a>
+            </div>
+          </form>
+        </section>
+
+        <!-- Project detail container (hash-driven) -->
+        <div id="projectDetailContainer" style="margin-top:18px"></div>
+
+      </div>
+
+      <!-- RIGHT: sidebar -->
+      <aside style="position:sticky;top:28px" class="panel" aria-label="sidebar">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="font-weight:800">Quick Info</div>
+          <div class="muted">Location</div>
+          <div>Indonesia</div>
+
+          <div class="muted" style="margin-top:8px">Availability</div>
+          <div>Open for internship & collaboration</div>
+
+          <div style="margin-top:12px;font-weight:800">Social</div>
+          <div style="display:flex;gap:8px;margin-top:6px">
+            <a class="btn" href="#" onclick="window.open('https://instagram.com','_blank')">Instagram</a>
+            <a class="btn" href="#" onclick="window.open('https://behance.net','_blank')">Behance</a>
+          </div>
+
+          <div style="margin-top:14px">
+            <div style="font-weight:800;margin-bottom:8px">Mini CV</div>
+            <div class="muted">Education</div>
+            <div>SMK Grafika Desa Putera — Teknik Grafika</div>
+            <div class="muted" style="margin-top:8px">Internship</div>
+            <div>PKL at PT Bintang Sempurna</div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      © <span id="year"></span> — Pipit Rahma Mufvida. All rights reserved.
+    </footer>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-hidden="true">
+    <button class="nav prev" aria-label="Previous image" onclick="lightboxPrev()">◀</button>
+    <button class="nav next" aria-label="Next image" onclick="lightboxNext()">▶</button>
+    <button class="close" aria-label="Close" onclick="closeLightbox()" style="top:18px;right:18px">✕</button>
+    <div style="text-align:center;max-width:1200px">
+      <img id="lightboxImg" src="" alt="Enlarged work image">
+      <div class="caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <script>
+    /**********************
+     * DATA: edit here
+     **********************/
+    const CV_DATA = {
+      name: "Pipit Rahma Mufvida",
+      role: "Graphic Design Student — SMK Grafika Desa Putera",
+      email: "emailkamu@domain.com",
+      phone: "+62 812-3456-789",
+      summary: "I specialize in print and visual design with practical knowledge of prepress, proofing and QC for production. Comfortable preparing files for mass printing and collaborating with production teams.",
+      skills: ["Adobe Illustrator","CorelDRAW","Adobe Photoshop","Prepress & Proofing","Packaging & Branding"],
+      projects: [
+        { id:1, title:"Local Product Packaging", thumb:"assets/images/work1.jpg", short:"Packaging and branding for local product with economical print layout.", description:"Full packaging design, dielines, and production-ready files. Considered material and finishing for cost-effective mass production."},
+        { id:2, title:"School Event Poster Series", thumb:"assets/images/work2.jpg", short:"Poster A2 + social-media variants, print-optimized color profiles.", description:"Poster set designed for print and digital; includes Pantone matching and CMYK proof files."},
+        { id:3, title:"Craft Label Collection", thumb:"assets/images/work3.jpg", short:"Labels for local craft products with die-cut guidance.", description:"Label designs with bleed, safe area and cutting guides, plus sticker mockups."},
+        { id:4, title:"Brand Identity — Small Cafe", thumb:"assets/images/work4.jpg", short:"Logo, stationery, and menu layout for a small café.", description:"Brand guidelines and stationery set; files prepared for offset printing."},
+        { id:5, title:"Promotional Flyer", thumb:"assets/images/work5.jpg", short:"Tri-fold flyer for product promotion.", description:"Tri-fold layout with fold markers and bleed; fold-proofed for production."},
+        { id:6, title:"Product Catalog Layout", thumb:"assets/images/work6.jpg", short:"Catalog design focused on clear hierarchy and print economy.", description:"Multi-page catalog layout with export-ready PDFs and image optimization."},
+        { id:7, title:"Label for Handmade Soap", thumb:"assets/images/work7.jpg", short:"Minimal label that suits small-batch production.", description:"Label optimizations for die-cut and thermal printing."},
+        { id:8, title:"Social Media Visual Pack", thumb:"assets/images/work8.jpg", short:"Visual assets adaptable to multiple platforms.", description:"Square, story, and banner variants optimized for digital posting."},
+        { id:9, title:"Event Backdrop", thumb:"assets/images/work9.jpg", short:"Large-format design prepared for wide-format printing.", description:"Backdrop design prepared with 150 DPI and large-format color checks."},
+        { id:10, title:"Gift Box Concept", thumb:"assets/images/work10.jpg", short:"Gift-box mockup with dielines and finish suggestions.", description:"Complete dieline, suggested cardboard thickness and finishing (UV spot)."}
+      ]
+    };
+
+    /**********************
+     * INITIALIZE UI
+     **********************/
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Fill CV quick fields
+    document.getElementById('cv-name').textContent = CV_DATA.name;
+    document.getElementById('cv-role').textContent = CV_DATA.role;
+    document.getElementById('cv-summary').textContent = CV_DATA.summary;
+    // contact links
+    document.querySelectorAll('a[href^="mailto:"]').forEach(a=>{
+      if(a.href.includes('emailkamu@domain.com')) a.href = 'mailto:' + CV_DATA.email;
+    });
+    document.querySelectorAll('a[href^="tel:"]').forEach(a=>{
+      if(a.href.includes('+628123456789')) a.href = 'tel:' + CV_DATA.phone;
+    });
+    document.getElementById('downloadCV').href = 'assets/CV-Pipit-Rahma.pdf';
+
+    // Populate projects grid
+    const projectsGrid = document.getElementById('projectsGrid');
+    CV_DATA.projects.forEach(p=>{
+      const div = document.createElement('div');
+      div.className = 'project';
+      div.innerHTML = `
+        <div class="thumb" role="img" aria-label="${escapeHtml(p.title)}">
+          <img src="${p.thumb}" alt="${escapeHtml(p.title)}" style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+        <div class="meta">
+          <h3>${escapeHtml(p.title)}</h3>
+          <p class="muted">${escapeHtml(p.short)}</p>
+        </div>
+      `;
+      // open project detail on click
+      div.addEventListener('click', ()=>{ openProject(p.id); });
+      projectsGrid.appendChild(div);
+    });
+
+    // Populate gallery (thumbnails)
+    const galleryGrid = document.getElementById('galleryGrid');
+    CV_DATA.projects.forEach((p, idx)=>{
+      const img = document.createElement('img');
+      img.src = p.thumb;
+      img.alt = p.title;
+      img.tabIndex = 0;
+      img.onclick = ()=>{ openLightbox(idx); };
+      img.onkeydown = (e)=>{ if(e.key === 'Enter'){ openLightbox(idx); } };
+      galleryGrid.appendChild(img);
+    });
+
+    /**********************
+     * PROJECT PAGES (hash routing)
+     **********************/
+    function renderProjectDetail(id){
+      const project = CV_DATA.projects.find(x=>x.id===id);
+      if(!project) return null;
+
+      const container = document.createElement('section');
+      container.className = 'project-detail active panel';
+      container.id = 'project-' + id;
+      container.innerHTML = `
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
+          <div style="flex:1;min-width:260px">
+            <img src="${project.thumb}" alt="${escapeHtml(project.title)}" style="width:100%;border-radius:12px;display:block;object-fit:cover">
+          </div>
+          <div style="flex:1;min-width:280px">
+            <h3 style="margin-top:0">${escapeHtml(project.title)}</h3>
+            <p class="muted">${escapeHtml(project.short)}</p>
+            <div style="margin-top:12px;color:var(--muted)">${escapeHtml(project.description)}</div>
+            <div style="margin-top:18px;display:flex;gap:10px">
+              <a class="btn" href="#projects" onclick="navigateTo('#projects')">Back to Projects</a>
+              <a class="btn btn-primary" href="${project.thumb}" target="_blank" rel="noopener">Open Image</a>
+            </div>
+          </div>
+        </div>
+      `;
+      return container;
+    }
+
+    function openProject(id){
+      // navigate using hash
+      window.location.hash = 'project-' + id;
+    }
+
+    function showProjectFromHash(){
+      const hash = window.location.hash || '#home';
+      // clear projectDetailContainer
+      const container = document.getElementById('projectDetailContainer');
+      container.innerHTML = '';
+      if(hash.startsWith('#project-')){
+        const id = parseInt(hash.replace('#project-',''),10);
+        const detail = renderProjectDetail(id);
+        if(detail) container.appendChild(detail);
+        window.scrollTo({top:document.getElementById('projectDetailContainer').offsetTop - 20, behavior:'smooth'});
+      } else {
+        // scroll to section if anchor exists
+        const target = document.querySelector(hash);
+        if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    }
+
+    window.addEventListener('hashchange', showProjectFromHash);
+    window.addEventListener('load', showProjectFromHash);
+
+    function navigateTo(hash){
+      window.location.hash = hash;
+    }
+
+    /**********************
+     * LIGHTBOX
+     **********************/
+    let currentLightboxIndex = 0;
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+
+    function openLightbox(index){
+      currentLightboxIndex = index;
+      const p = CV_DATA.projects[index];
+      lightboxImg.src = p.thumb;
+      lightboxImg.alt = p.title;
+      lightboxCaption.textContent = p.title + " — " + p.short;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(){
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+      lightboxImg.src = '';
+    }
+    function lightboxNext(){
+      currentLightboxIndex = (currentLightboxIndex + 1) % CV_DATA.projects.length;
+      openLightbox(currentLightboxIndex);
+    }
+    function lightboxPrev(){
+      currentLightboxIndex = (currentLightboxIndex - 1 + CV_DATA.projects.length) % CV_DATA.projects.length;
+      openLightbox(currentLightboxIndex);
+    }
+    // keyboard nav
+    document.addEventListener('keydown', (e)=>{
+      if(lightbox.classList.contains('open')){
+        if(e.key === 'ArrowRight') lightboxNext();
+        if(e.key === 'ArrowLeft') lightboxPrev();
+        if(e.key === 'Escape') closeLightbox();
+      }
+    });
+    // click outside to close
+    lightbox.addEventListener('click', (e)=>{
+      if(e.target === lightbox) closeLightbox();
+    });
+
+    /**********************
+     * CONTACT FORM (mailto)
+     **********************/
+    function handleContact(e){
+      e.preventDefault();
+      const name = document.getElementById('contactName').value.trim();
+      const email = document.getElementById('contactEmail').value.trim();
+      const msg = document.getElementById('contactMessage').value.trim();
+      const subject = encodeURIComponent('Portfolio Contact — ' + name);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${msg}`);
+      window.location.href = `mailto:${CV_DATA.email}?subject=${subject}&body=${body}`;
+    }
+
+    /**********************
+     * DOWNLOAD CV
+     **********************/
+    function downloadCV(){
+      const link = document.createElement('a');
+      link.href = 'assets/CV-Pipit-Rahma.pdf';
+      link.download = `${CV_DATA.name.replace(/\s+/g,'_')}_CV.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    }
+
+    /**********************
+     * THEME / small utils
+     **********************/
+    // allow toggling a muted alt theme label (keeps dark pink look)
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', (e)=>{
+      e.preventDefault();
+      // simple bounce to show interactivity — no heavy theme switching needed (already dark pink)
+      themeToggle.animate([{ transform: 'translateY(0)' },{ transform: 'translateY(-4px)' },{ transform: 'translateY(0)' }], { duration: 240 });
+    });
+
+    function escapeHtml(s){
+      if(!s && s !== 0) return '';
+      return String(s).replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; });
+    }
+
+    /**********************
+     * Accessibility focus management for project details
+     **********************/
+    document.addEventListener('click', (e)=>{
+      if(e.target.matches('a[href^="#"]')){
+        // allow default anchor to change hash and let hashchange handle scroll
+      }
+    });
+
+    /**********************
+     * PRELOAD images (optional)
+     **********************/
+    (function preload(){
+      CV_DATA.projects.forEach(p=>{
+        const img = new Image();
+        img.src = p.thumb;
+      });
+    })();
+  </script>
+</body>
+</html>
